@@ -1,0 +1,933 @@
+%File: formatting-instructions-latex-2025.tex
+%release 2025.0
+\documentclass[letterpaper]{article} % DO NOT CHANGE THIS
+\usepackage{aaai25}  % DO NOT CHANGE THIS
+\usepackage{times}  % DO NOT CHANGE THIS
+\usepackage{helvet}  % DO NOT CHANGE THIS
+\usepackage{courier}  % DO NOT CHANGE THIS
+\usepackage[hyphens]{url}  % DO NOT CHANGE THIS
+\usepackage{graphicx} % DO NOT CHANGE THIS
+\urlstyle{rm} % DO NOT CHANGE THIS
+\def\UrlFont{\rm}  % DO NOT CHANGE THIS
+\usepackage{natbib}  % DO NOT CHANGE THIS AND DO NOT ADD ANY OPTIONS TO IT
+\usepackage{caption} % DO NOT CHANGE THIS AND DO NOT ADD ANY OPTIONS TO IT
+\frenchspacing  % DO NOT CHANGE THIS
+\setlength{\pdfpagewidth}{8.5in}  % DO NOT CHANGE THIS
+\setlength{\pdfpageheight}{11in}  % DO NOT CHANGE THIS
+%
+% These are recommended to typeset algorithms but not required. See the subsubsection on algorithms. Remove them if you don't have algorithms in your paper.
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{amsfonts}
+\usepackage{booktabs} % 在导言区引用
+\usepackage{verbatim} % 在文档导言区加载
+
+%
+% These are are recommended to typeset listings but not required. See the subsubsection on listing. Remove this block if you don't have listings in your paper.
+\usepackage{newfloat}
+\usepackage{listings}
+\DeclareCaptionStyle{ruled}{labelfont=normalfont,labelsep=colon,strut=off} % DO NOT CHANGE THIS
+\lstset{%
+	basicstyle={\footnotesize\ttfamily},% footnotesize acceptable for monospace
+	numbers=left,numberstyle=\footnotesize,xleftmargin=2em,% show line numbers, remove this entire line if you don't want the numbers.
+	aboveskip=0pt,belowskip=0pt,%
+	showstringspaces=false,tabsize=2,breaklines=true}
+\floatstyle{ruled}
+\newfloat{listing}{tb}{lst}{}
+\floatname{listing}{Listing}
+%
+% Keep the \pdfinfo as shown here. There's no need
+% for you to add the /Title and /Author tags.
+\pdfinfo{
+/TemplateVersion (2025.1)
+}
+
+% DISALLOWED PACKAGES
+% \usepackage{authblk} -- This package is specifically forbidden
+% \usepackage{balance} -- This package is specifically forbidden
+% \usepackage{color (if used in text)
+% \usepackage{CJK} -- This package is specifically forbidden
+% \usepackage{float} -- This package is specifically forbidden
+% \usepackage{flushend} -- This package is specifically forbidden
+% \usepackage{fontenc} -- This package is specifically forbidden
+% \usepackage{fullpage} -- This package is specifically forbidden
+% \usepackage{geometry} -- This package is specifically forbidden
+% \usepackage{grffile} -- This package is specifically forbidden
+% \usepackage{hyperref} -- This package is specifically forbidden
+% \usepackage{navigator} -- This package is specifically forbidden
+% (or any other package that embeds links such as navigator or hyperref)
+% \indentfirst} -- This package is specifically forbidden
+% \layout} -- This package is specifically forbidden
+% \multicol} -- This package is specifically forbidden
+% \nameref} -- This package is specifically forbidden
+% \usepackage{savetrees} -- This package is specifically forbidden
+% \usepackage{setspace} -- This package is specifically forbidden
+% \usepackage{stfloats} -- This package is specifically forbidden
+% \usepackage{tabu} -- This package is specifically forbidden
+% \usepackage{titlesec} -- This package is specifically forbidden
+% \usepackage{tocbibind} -- This package is specifically forbidden
+% \usepackage{ulem} -- This package is specifically forbidden
+% \usepackage{wrapfig} -- This package is specifically forbidden
+% DISALLOWED COMMANDS
+% \nocopyright -- Your paper will not be published if you use this command
+% \addtolength -- This command may not be used
+% \balance -- This command may not be used
+% \baselinestretch -- Your paper will not be published if you use this command
+% \clearpage -- No page breaks of any kind may be used for the final version of your paper
+% \columnsep -- This command may not be used
+% \newpage -- No page breaks of any kind may be used for the final version of your paper
+% \pagebreak -- No page breaks of any kind may be used for the final version of your paperr
+% \pagestyle -- This command may not be used
+% \tiny -- This is not an acceptable font size.
+% \vspace{- -- No negative value may be used in proximity of a caption, figure, table, section, subsection, subsubsection, or reference
+% \vskip{- -- No negative value may be used to alter spacing above or below a caption, figure, table, section, subsection, subsubsection, or reference
+
+\setcounter{secnumdepth}{0} %May be changed to 1 or 2 if section numbers are desired.
+
+% The file aaai25.sty is the style file for AAAI Press
+% proceedings, working notes, and technical reports.
+%
+
+% Title
+
+% Your title must be in mixed case, not sentence case.
+% That means all verbs (including short verbs like be, is, using,and go),
+% nouns, adverbs, adjectives should be capitalized, including both words in hyphenated terms, while
+% articles, conjunctions, and prepositions are lower case unless they
+% directly follow a colon or long dash
+\title{Fast Task Assignment in Multi-Goal Task Assignment and Path Finding}
+\author{
+Ye Gao\textsuperscript{\rm 1}
+%,
+%AuthorTwo\textsuperscript{\rm 2},
+%AuthorThree\textsuperscript{\rm 3},\\
+%AuthorFour\textsuperscript{\rm 4},
+%AuthorFive\textsuperscript{\rm 5}
+}
+\affiliations {
+\textsuperscript{\rm 1}School of Artificial Intelligence and Automation, Huazhong University of Science and Technology, Wuhan, China
+%,\\
+%\textsuperscript{\rm 2}AffiliationTwo,\\
+%\textsuperscript{\rm 3}AffiliationThree,\\
+%\textsuperscript{\rm 4}AffiliationFour,\\
+%\textsuperscript{\rm 5}AffiliationFive\\
+gaoye@hust.edu.cn
+%,
+%email@affiliation.com,
+%email@affiliation.com,
+%email@affiliation.com
+}
+
+%Example, Single Author, ->> remove \iffalse,\fi and place them surrounding AAAI title to use it
+\iffalse
+\title{My Publication Title --- Single Author}
+\author {
+    Author Name
+}
+\affiliations{
+    Affiliation\\
+    Affiliation Line 2\\
+    name@example.com
+}
+\fi
+
+\iffalse
+%Example, Multiple Authors, ->> remove \iffalse,\fi and place them surrounding AAAI title to use it
+\title{My Publication Title --- Multiple Authors}
+\author {
+    % Authors
+    First Author Name\textsuperscript{\rm 1,\rm 2},
+    Second Author Name\textsuperscript{\rm 2},
+    Third Author Name\textsuperscript{\rm 1}
+}
+\affiliations {
+    % Affiliations
+    \textsuperscript{\rm 1}Affiliation 1\\
+    \textsuperscript{\rm 2}Affiliation 2\\
+    firstAuthor@affiliation1.com, secondAuthor@affilation2.com, thirdAuthor@affiliation1.com
+}
+\fi
+
+
+% REMOVE THIS: bibentry
+% This is only needed to show inline citations in the guidelines document. You should not need it and can safely delete it.
+\usepackage{bibentry}
+% END REMOVE bibentry
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+%    Logic chain: problem => parent problem => method => experimental results
+
+    % By Gao Ye 
+% problem and its illustration
+% 我们研究了多目标多智能体取送（MG-TAPF）问题，在这个问题中，一组智能体需要在已知环境中执行一批具有释放时间的任务。
+The Multi-Goal Task Assignment and Path Finding (MG-TAPF) problem involves coordinating a team of agents to execute a set of tasks, each characterized by a specific release time and an ordered sequence of goal locations. 
+% 为了执行一个任务，智能体首先需要从当前位置移动到一系列goal位置。
+Completing a task requires an agent to visit all the goal locations in the prescribed order, starting no earlier than the task's release time, while avoiding collisions with other agents. 
+% 目标是为智能体分配任务，并为它们规划出无碰撞的路径以完成这些任务。而任务分配是 MAPD 问题中的一个重要环节。
+The core challenge lies in efficiently assigning tasks to agents and planning collision-free paths for their execution.  
+
+% previous method and its shortcoming
+% 现有的针对该问题的算法都存在无法在短时间内完成任务分配的缺点，从而限制了大规模 TAPF 的整体效率。
+Traditional approaches to the Task Assignment and Path Finding (TAPF) problem often fail to achieve timely and efficient task allocation, especially in large-scale multi-agent systems. 
+% our method (parallel method or components)
+% 为了应对这个限制，我们提出了几种新颖的自适应启发式方法，用以改进当前最先进的在线 MAPD 算法在任务调度方面的性能。
+To address this limitation, we propose several adaptive congestion-based methods that enable rapid task allocation under tight time constraints in scenarios involving large numbers of agents and tasks. 
+% 为了估算每个智能体完成每项任务的延迟，我们根据智能体的总数量和地图类型提供了三种任务分配方法：
+These methods estimate the delay each free agent would incur in completing each available task by assessing congestion around the task’s first goal location, 
+leveraging this delay to predict task completion times across all agents. 
+% 1. 针对智能体数量为 1500 到 3000 的情况，通过统计任务取货位置区域附近的智能体数量来计算启发值。
+% For agent number from 1500 to 3000, we count the number of agents near the region of task first goal location to compute heuristic value. 
+% 2. 针对智能体数量为 4335 且地图类型为游戏地图的情况，通过统计智能体到任务取货点向量与智能体到目标点向量之间的交点数量来计算启发值。
+% For agent number 4335 and game map type, we count the number of intersection point between agent-task vectors and agent-goal vectors.
+% 3. 针对智能体数量为 10000 的情况，通过计算任务取货位置区域附近的密度来计算启发值。
+% For agent number 10000, we compute the density near the region of task first goal location to compute heuristic value. 
+
+% benchmark and experimental results
+% 实验结果表明，在包含多达一万名智能体的大规模场景中，相较于之前的方法和其他最先进的方法，我们的方法实现了至少 50\% 的成本改进。。
+% Experimentally, our methods demonstrate cost improvements by at least 50\% in large-scale scenarios with up to ten thousand agents, compared with the original greedy method and other state-of-the-art methods.
+Experimentally, our approaches demonstrate the best performance on large-scale instances, highlighting their effectiveness in addressing the complexities of MG-TAPF.
+We earn second place in the 2024 League of Robot Runners (LoRR) competition's task scheduling track. 
+
+\end{abstract}
+
+% Uncomment the following to link to your code, datasets, an extended version or similar.
+%
+% \begin{links}
+%     \link{Code}{https://aaai.org/example/code}
+%     \link{Datasets}{https://aaai.org/example/datasets}
+%     \link{Extended version}{https://aaai.org/example/extended-version}
+% \end{links}
+
+\section{Introduction}
+
+% 1.1 通俗定义MAPF
+Multi-Agent Path Finding (MAPF) is the problem of finding conflict-free paths for multiple agents to move from their start locations to their goals while minimizing the total travel times of all agents \cite{stern2019mapf}. 
+% application of MAPF
+% 在许多实际应用中的多智能体系统中，智能体需要在一个共同的环境中运行，持续地逐一处理新任务，并规划无碰撞路径来执行这些任务。
+MAPF has a wide variety of real-world applications, 
+% 例如，自主飞机牵引车辆 \cite{morris2016planning}、办公室机器人 \cite{veloso2015cobots}、视频游戏中的角色 \cite{ma2017feasibility}、需要改变队形的机器人团队 \cite{honig2016formation}以及自动化仓库中的机器人 \cite{wurman2008coordinating} 等，它们需要将库存货架从存储位置移动到库存工作站或其他位置。
+including unmanned aerial vehicle management \cite{ho2019multi}, video game action planning \cite{ma2017feasibility}, and automated warehouse operation \cite{li2021lifelong, varambally2022mapf}. 
+
+% 1.2 通俗定义TAPF
+An variant of MAPF problem is Combined Target Assignment and Path Finding (TAPF) problem, 
+which assigns target locations to agents and plans conflict-free paths for agents to their targets \cite{ma2016optimal}. 
+% 1.3 通俗定义MAPD
+A similar variant is Multi-Agent Pickup-and-Delivery (MAPD), where a team of agents have to execute a batch of tasks. 
+Each task has a pickup location, a delivery location and release time. 
+
+% 1.4 通俗定义MG-TAPF
+% 这个问题被称为多智能体收取与投递问题（Multi-Goal Task Assignment and Path Finding, MG-TAPF）\cite{ma2017lifelong}，其中一组智能体需要在已知环境中执行一批任务。
+A variant of TAPF problem is Multi-Goal Task Assignment and Path Finding (MG-TAPF) problem.  
+A team of agents has to execute a batch of tasks \cite{ma2017lifelong},  
+which is characterized by an order of goal locations and a release time. 
+% 每个任务由goal位置和释放时间构成。为了执行任务，智能体首先需要按顺序访问goal位置，同时不能与其他智能体发生碰撞。
+To execute a task, the agent has to visit its goal locations in order after its release time, without colliding with other agents. 
+
+
+% introduction Paragraph 2
+
+% previous methods => previous methods' shortcomings
+% 在过去的几十年中，许多工作致力于解决**MAPD中的任务分配问题**。  
+During the past decades, many efforts have been made for handling task assignment in TAPF. 
+% 例如，Ma等人 \cite{ma2017lifelong} 提出了匈牙利算法和snatch算法。 
+For example, Ma et al. \cite{ma2017lifelong} proposed to use Hungarian Method \cite{kuhn1955hungarian} to assign task. 
+% shortcomings of previous methods
+% 然而，**先前的方法**可能无法在合理的时间内解决问题，从而限制了**先前方法**的整体效果。  
+However, previous methods may fail to solve the problem within reasonable time, thus limiting the overall effectiveness of large-scale multi-agent systems. 
+
+Therefore, the League of Robot Runners competition \cite{chen2024lorr}, sponsored by Amazon Robotics, was organized online in 2024 to examine more challenging MG-TAPF settings, including 
+% 等官方公布了算例再填写
+a large number of agents of up to 10, 000 
+and limited planning time (including task scheduling and path planning) of 1 second per timestep. 
+% introduction Paragraph 3
+% logic chain: this paper's methods => Method 1 => Method 2}
+Inspired by these challenges, we propose several novel adaptive congestion-based method that improve a state-of-the-art MG-TAPF algorithm with respect to task assignment. 
+% 这种竞赛中的策略没必要写
+%To estimate the delay of each agent to complete each task, we provide three task allocation methods according to the total number of agents and the map type. 
+%For agent number from 1500 to 3000, we count the number of agents near the region of task first goal location to compute heuristic value. 
+%For agent number 4335 and game map type, we count the number of intersection point between agent-task vectors and agent-goal vectors.
+%For agent number 10000, we compute the density near the region of task first goal location to compute heuristic value. 
+
+% introduction Paragraph 6
+% logic chain: benchmarks => experimental result comparison}
+
+We conduct a number of experiments to evaluate our approach on 10 main round instances of competition \cite{benchmark2024lorr}. 
+%% 尤其擅长大型任务
+Experimental results indicate that our method performs best in large-scale sortation and warehouse scenarios. 
+
+% introduction Paragraph 7
+% logic chain: paper structure
+
+% The rest of this paper is organized as follows.
+% Section 2 
+% In the next section, we provide some related work.
+% Section 3
+% Then, we formulate the MAPD problem given in the LoRR competition.
+% Section 4
+% Section 4 describes the heuristic algorithm and relevant proposed ideas.
+% Section 5
+% Experimental evaluations of the Our Method algorithm are shown in Section 5.
+% Section 6
+% We conclude the paper in Section 6.
+% 排名 (等结果公示时加上)
+% Our solution ranked second in task scheduling track. The code are publicly available.
+
+% 2 Related work
+\section{Related Work}
+%% MAPD是任务分配和路径规划的组合
+The MAPD problem is the combination of task assignment and path finding problem. 
+%% MAPD问题的求解方法可以分为耦合和解耦两类
+So MAPD methods can be categorized into coupled and decoupled approaches.
+%% 耦合的方法把任务分配和路径规划放在一起考虑。
+Coupled approaches considers task allocation and path planning jointly. 
+%% CBM
+\citet{ma2016optimal} present the CBM (Conflict-Based Min-Cost-Flow) algorithm, 
+which is a hierarchical algorithm uses CBS to resolve conflicts among agent teams on the high level and min-cost max-flow algorithm to assign targets and plan paths on the low level. 
+%% ASP
+\citet{nguyen2019generalized} solved MAPF with answer set programming. 
+%% CBS-TA
+\citet{honig2018conflict} proposed CBS-TA, which solves the problem optimally by extending CBS to operate on a search forest. 
+%% CBS-TA-MLA*
+\citet{zhong2022optimal} proposed Conflict-Based Search with Task Assignment with Multi-Label A* algorithm (CBS-TA-MLA), which use CBS-TA \cite{honig2018conflict} on the high level and MLA* \cite{grenouilleau2019multi} on the low level. 
+%% ITA-CBS
+\citet{tang2023solving} developed Incremental Target Assignment CBS (ITA-CBS) to avoid computing K-best assignments, 
+thus running faster than CBS-TA. 
+
+%% 非耦合的方法把任务分配和路径规划分开考虑。
+Decoupled approaches considers task allocation and path planning independently. 
+%% CENTRAL
+\citet{ma2017lifelong} proposed CENTRAL algorithm, 
+which used Hungarian Method \cite{kuhn1955hungarian} to assign task and Conflict-Based Search \cite{sharon2015conflict} to plan paths. 
+%% TSP
+\citet{liu2019task} computed task sequence for each agent by solving a special traveling salesman problem and then planned paths according to these task sequences. 
+%% min-cost max-flow
+\citet{kou2020idle} presented algorithms based on a min-cost max-flow formulation that minimizes the total idle time of stations. 
+%% LNS-PBS & LNS-wPBS
+\citet{xu2022multi} proposed LNS-PBS algorithm, which used Large Neighborhood Search (LNS) to assign tasks and Priority Based Search (PBS) to plan paths. 
+
+% 3 Problem definition
+\section{Problem Definition}
+
+subsection{MAPF}
+% Graph, agent, action, task
+% The MG-TAPF problem is formally defined as follows. 
+%% graph
+%% 给定一个连通图$G = (V,E)$，其中顶点集$V$表示智能体可能的位置，边集$E \subseteq V \times V $表示相邻位置间的通路。
+Let $G = (V,E)$ be a connected graph, where vertex set $V$ contains all possible locations of agent and edge set $E$ contains all connections between adjacent locations. 
+%% 定义obstacle
+If $G$ is a grid map, a cell is called an obstacle if it is blocked. 
+%% agent
+%% 给定智能体集合$ A = \{ a_1, a_2, \dots, a_{|A|} \}$，其中每个智能体 $a_i$ 具有一个起点 $s_i \in V$ 和一个目标点 $g_i \in V $。
+Let $ A = \{ a_1, a_2, \dots, a_{|A|} \}$ be a set of agents.
+%%% agent parking
+%% 令 $ p_i(t) \in V $ 表示智能体$a_i$在离散的时间步$t \in N$的位置。
+Let $ loc(a_i,t) \in V $ denotes agent $a_i$ location at discrete timestep $t \in N$. 
+%% agent有起始位置。
+Each agent $a_i$ has a unique parking location $ p_i \in V $ assigned to it and starts in it at time step 0.
+%% action
+At each timestep, an agent's action can be moving to an adjacent vertex, i.e., $ (loc(a_i, t), loc(a_i, t+1)) \in E$; or waiting at its current location, i.e., $loc(a_i, t) = loc(a_i, t+1)$.
+%% 当 $G$ 是四向连通的二维网格图，智能体的行动是向前、向后、向左、向右、等待中的一种。
+If $G$ is a 4-neighbor grid map, an agent can move forward, backward, left, right, or stay. 
+
+% Constraint (English)
+%% 智能体的行动需要避免以下两种冲突。
+An agent's feasible action should avoid the following two types of conflicts.
+% (1) 点冲突：两个智能体$a_i,a_j$在某个时间步占据同一位置，即$p_i(t) = p_j(t)$。
+(1) A vertex conflict occurs when two agents $a_i,a_j$ occupy the same location at the same timestep, i.e., $loc(a_i, t) = loc(a_j, t)$.
+%  (2) 边冲突：两个智能体$a_i,a_j$某个时间步交换彼此的位置，即$p_i(t) = p_j(t+1) \land p_i(t+1) = p_j(t)$。
+(2) An edge conflicts occurs when two agents $a_i,a_j$ traverse the same edge from opposite directions at the same time, i.e., $loc(a_i, t) = loc(a_j, t+1) \land loc(a_i, t+1) = loc(a_j, t)$. 
+
+% Path
+%% 路径$ p_i $是智能体$a_i$通过一系列的行动，由起点$s_i$移动到目标点$g_i$，并停留在目标点；
+Path $ \pi_i $ is a sequence of agent $a_i$'s actions from one location to another location. 
+$l(\pi_i)$ is the length of the path. 
+%% 最短路径定义距离
+The distance $d(x, y)$ from vertex $x$ to vertex $y$ is the length of the shortest path from $x$ to $y$.
+%% 如果一条路径中的所有行动都避免了点冲突和边冲突，则称这条路径是有效的。
+A path is feasible if and only if its actions are all feasible. 
+
+\subsection{MAPF with Rotations}
+%% 带旋转的MAPF
+MAPF with rotation is a variant of MAPF with different agent states and actions. 
+%% 方向属性
+Each agent has an orientation $o \in \{East, South, West, North\}$.
+%% 行动属性 
+At each step, an agent can move forward to an adjacent vertex, rotate $90^\circ$ clockwise, rotate $90^\circ$ counterclockwise, or stay at its current vertex.
+
+\subsection{MG-TAPF}
+% Task allocation
+%% task 
+Let $ T = \{ \tau_1, \tau_2, \dots, \tau_{|T|} \}$ be a set of tasks, where each task $\tau_j \in T$ has an ordered sequence of goal locations $\{g_1^j, g_2^j, ..., g_k^j\}$ and a release time $ r_i \in \mathbb{N} $. 
+%% 任务重分配
+A task is open if one or more goals in the sequence have been visited. 
+Once open, a task cannot be re-assigned to another agent. 
+%% task distance
+We define task distance $d(\tau_j)$ as the sum of the distances between consecutive goal locations in the task's ordered sequence $\sum_{i=0}^{k-1}d(g_i^j, g_{i+1}^j)$. 
+%% agent-task distance
+We define agent-task distance $d(a_i, \tau_j)$ as the distance between agent current location and task first goal location $d(a_i, e^j_1)$. 
+%% task endpoints and non-task endpoints
+% The goal locations of tasks are called task endpoints, and the parking locations of agents are called non-task endpoints. 
+
+%% free agent and occupied agent
+An agent that is not executing a task is called a free agent, otherwise it is called an occupied agent. 
+Each free agent can be assigned any task $ \tau_j $ that is not open.
+%% task process
+To complete an task, the agent needs to visit all this task's goal locations in order. 
+%%% to first goal
+It has to be at the first goal location at or after the release time $r_j$ to start this task.
+%%% to last goal
+When it reaches the last goal location, it completes its task and is called a free agent again.
+
+% Competition
+\subsection{Competition Problem}
+The problem given in the LoRR 2024 competition is a combination of MAPF with Rotations and MG-TAPF. 
+%% 任务并没有预先指定的release time. 
+Further, tasks do not have prescribed release time.
+When an old task is completed, a new task is revealed. 
+%% 每个free agent最多只能被分配一个任务。
+Each free agent can be assigned at most one task. 
+%% Objective
+The objective of the competition problem is to complete as many tasks as possible by a given timestep. 
+
+%% track
+There are three evaluation tracks. 
+%% task scheduling 
+Task Scheduling track use a default path planner \cite{chen2024traffic} and only needs participants to design the task scheduler. 
+%% path planning
+Path Planning track use a default task scheduler (see Algorithm \ref{alg:organizer_task_scheduler}) and only needs participants to design the path planner. 
+%% combined
+Combined track need participants to design both the task scheduler and path planner. 
+
+%% timestep
+Timestep is set to 1 second. 
+At the end of each timestep, the planner and scheduler must return valid path plans and valid task assignments. 
+
+% 4 Method
+\section{Congestion-Based Approach}
+
+% 使用基于规则的方法
+%% Due to the limitation of time, we use a rule-based method instead of a search-based method.
+% 在基于规则的方法中，我们选择优先级方法。
+%% In rule-based method, we choose priority-based method. 
+% 主办方提供了一种贪心的优先级方法
+The organizers of LoRR 2024 provide a priority-based greedy task assignment method, illustrated in Algorithm \ref{alg:organizer_task_scheduler}. 
+% Lines 1 - 2
+The initial steps involve updating the sets of free agents and free tasks by including new free agents and tasks (Lines 1-2). 
+% Line 4. 这里可以参考优先级论文写法。
+The task scheduler then assigns tasks to agents sequentially based on their IDs (Line 3), ensuring that the process terminates if the allocated time runs out (Lines 4-6). 
+% Lines 8 - 14
+For each free agent, a free task with the minimum estimated completion distance is selected, calculated as the sum of the agent-task distance and the task distance (Lines 8-14). 
+% Lines 18 - 19
+Once a task is assigned to an agent, both the agent and the task are removed from their respective sets (Lines 15-17).
+
+
+\begin{algorithm}[tb]
+\caption{Priority-Based Greedy Task Assignment}
+\label{alg:organizer_task_scheduler}
+\textbf{Input}: free agent set $A_0$, free task set $T_0$\\
+%\textbf{Parameter}: Optional list of parameters\\
+\textbf{Output}: task assignment result
+\begin{algorithmic}[1] %[1] enables line numbers
+    \STATE $A_0 := A_0 \cup \{newFreeAgents\}$
+    \STATE $T_0 := T_0 \cup \{newFreeTasks\}$
+    % 遍历每个free agent
+    \FOR {$a_i \in A_0$}
+        % 检测是否超时
+        \IF {time runs out}
+            \STATE \textbf{break}
+        \ENDIF
+
+        \STATE minTaskDuration := IntMax
+        % 遍历每个free task
+        \FOR {$\tau_j \in T_0$}
+            \STATE taskDuration := $d(a_i, \tau_j) + d(\tau_j)$
+
+            \IF {$taskDuration < minTaskDuration$}
+                \STATE $\tau_{min} := \tau_j$
+                \STATE minTaskDuration := taskDuration
+            \ENDIF
+        \ENDFOR
+        
+        % 分配最小完成距离的任务
+        \STATE assign $\tau_{min}$ to $a_i$
+        \STATE $ A_0 := A_0 - \{a_i\} $
+        \STATE $ T_0 := T_0 - \{\tau_{min}\} $
+    \ENDFOR
+\end{algorithmic}
+\end{algorithm}
+
+% 默认算法的效率不高
+% 效率不高的原因是因为对完成时长估计不准确。
+However, the greedy method has limitations in accurately estimating task completion time. 
+The estimation approximates the minimum task completion distance as task duration (Line 9 in Algorithm \ref{alg:organizer_task_scheduler}), which neglects delays resulting from the need for collision avoidance with other agents during task execution. 
+%% 理论完成距离更短但处于拥堵区域的agent有可能耗时更长完成
+Tasks with shorter estimated distances might take longer due to traffic jam in congested areas. 
+
+% 几种可能估计delay的方法
+To address this, we developed several congestion-based methods to estimate the agent-task delay, 
+% define delay
+which is defined as the difference between the minimum time an agent required to complete a task and the real time an agent consumed to complete a task, 
+while the minimum time an agent required to complete a task is the sum of agent-task distance and task distance. 
+% 估计每个任务的delay时间
+% We need to estimate the agent-task delay for each free task to allocate proper task to free agent. 
+% 它们的共同点是通过task附近的congestion程度来估计agent-task delay.
+The framework of congestion-based approach is shown in Algorithm \ref{alg:adaptive_congestion_estimation}. 
+They all estimate the agent-task delay based on the congestion level near the task (Line 11), 
+% 它们的区别在于区域和标的选择不同
+and their differences lie in the regions and objects chosen for congestion evaluation. 
+% 把估计的拥堵加到任务完成时间里
+The delay value is then added to the minimum task completion distance to provide a more accurate estimate of task duration (Line 12). 
+
+% 用自适应的方法估计coefficient
+The congestion coefficient $\gamma$ is adaptively calculated using the difference between the actual duration of completed tasks and their estimated minimum durations, divided by the total number of completed tasks (Line 3). 
+% 目的：更准确的估计, 导致更合理的分配
+This ensures dynamic and context-aware adjustment of congestion impact, improving task allocation efficiency. 
+
+% 伪代码2: Adaptive Delay Estimation overview
+\begin{algorithm}
+    \caption{Adaptive Delay Estimation}
+    % 给算法添加标签，方便引用
+    \label{alg:adaptive_congestion_estimation} 
+    \textbf{Input:} free agent set $A_0$, free task set $T_0$ \\
+    \textbf{Output:} task assignment result
+    \begin{algorithmic}[1]
+
+    \STATE $A_0 := A_0 \cup \{newFreeAgents\}$
+    \STATE $T_0 := T_0 \cup \{newFreeTasks\}$
+    \STATE $\gamma$ := (totalActualDuration - totalMinTaskDuration) / numTaskFinished
+    % 遍历每个free agent
+    \FOR {$a_i \in A_0$}
+        % 检测是否超时
+        \IF {time runs out}
+            \STATE \textbf{break}
+        \ENDIF
+
+        \STATE minTaskDuration := IntMax
+        % 遍历每个free task
+        \FOR {$\tau_j \in T_0$}
+            % 计算圆中agent数量
+            \STATE taskDist := $d(a_i, \tau_j) + d(\tau_j)$
+            % 由congestion估算delay                
+            \STATE $\Delta$  = $\gamma \cdot $ AdaptiveEvaluateCongestion($a_i, \tau_j$) 
+            \STATE taskDuration := taskDist + $\Delta$
+
+            \IF {$taskDuration < minTaskDuration$}
+                \STATE $\tau_{min} := \tau_j$
+                \STATE minTaskDuration := taskDuration
+            \ENDIF
+        \ENDFOR
+        
+        % 分配最小完成距离的任务
+        \STATE assign $\tau_{min}$ to $a_i$
+        \STATE $ A_0 := A_0 - \{a_i\} $
+        \STATE $ T_0 := T_0 - \{\tau_{min}\} $
+    \ENDFOR
+
+    \end{algorithmic}
+\end{algorithm}
+
+
+% 4.1 circle count current
+\subsection{Count Agent in Task-Agent Circle}\label{sec:adaptive_jam_task_circle_count_current}
+
+% 用拥堵程度来估计
+Count Agent in Task-Agent Circle (CATAC) evaluates congestion around each free task by defining an task-agent circle centered at the task’s first goal location with a radius equal to the agent-task distance. 
+% 用圆里其他agent的数量来计算拥堵程度
+The number of other agents within this circle is counted (as shown in Figure \ref{fig:adaptive_jam_task_circle_count_current} and Algorithm \ref{alg:adaptive_jam_task_circle_count_current}). 
+
+
+% 图1: count current
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.9\columnwidth]{adaptive_jam_task_circle_count_current.drawio.pdf}
+    \caption{This figure shows congestion computation when agent $a_1$ selects task $\tau_2$. 
+    % 图例说明
+    Circles with solid lines represent agents' current locations.
+    Squares with solid lines represent tasks' first goal locations.
+    % 画圆 
+    Draw a circle with $\tau_2$'s first goal location as the center and the agent-task distance $d(a_2, \tau_2)$ as the radius. 
+    % 用圆里其他agent的数量来计算拥堵程度
+    Count the number of other agents in this circle. 
+    % 这张图中的圆包含3个点.
+    There are 3 other agents in the circle range, namely $a_2$, $a_3$ and $a_4$.
+    }
+    \label{fig:adaptive_jam_task_circle_count_current}
+\end{figure}
+
+% 伪代码1: count current
+\begin{algorithm}
+    \caption{Count Agent in Task-Agent Circle}
+    % 给算法添加标签，方便引用
+    \label{alg:adaptive_jam_task_circle_count_current} 
+    \textbf{Input:} agent $a_i$, task $\tau_j$ \\
+    \textbf{Output:} $congestion$
+    \begin{algorithmic}[1]
+
+    \STATE $congestion$ := number of agents in the task-agent circle
+
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{comment}
+% 4.2 circle count goal
+\subsection{Count Goal in Task-Agent Circle}\label{sec:adaptive_jam_task_circle_count_goal}
+
+% 回顾adaptive Delay Estimation task circle count current
+In Algorithm \ref{alg:adaptive_jam_task_circle_count_current}, we assume that delay to complete a task is proportional to the current number of agents in the task-agent circle. 
+% 缺点，有可能过时
+However, since agents require time to reach the first goal location, some agents in the circle at the beginning have already left. 
+Thus, using the current number of agents within the circle to measure congestion may be outdated. 
+% 因此，用将来的数据
+To address this, Count Goal in Task-Agent Circle (CGTAC) counts the number of occupied agents' next goals as shown in Figure \ref{fig:adaptive_jam_task_circle_count_goal} and Algorithm \ref{alg:adaptive_jam_task_circle_count_goal}. 
+%% 下一个目标是未访问的下一个goal位置
+An occupied agent's next goal is its assigned task's next goal location that the agent will visit. 
+%% 由于agent goal反应的是将来的数据，因此可以比agent current location更能反应未来一段时间task goal点的拥堵情况
+Because they can reflect agents' future actions, occupied agents' next goals can better predict congestion at task first goal location than agents' current locations. 
+
+% 图2: count goal
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.9\columnwidth]{adaptive_jam_task_circle_count_goal.drawio.pdf}
+    \caption{This figure shows congestion computation when agent $a_1$ selects task $\tau_2$. 
+    % 图例说明
+    Circles with solid lines represent agents' current locations.
+    Circles with dashed lines represent occupied agents' next goals.
+    Squares with solid lines represent tasks' first goal locations.
+    % 画圆 
+    Draw a circle with $\tau_2$'s first goal location as the center and the agent-task distance $d(a_2, \tau_2)$ as the radius. 
+    % 用圆里其他agent的数量来计算拥堵程度
+    Count the number of occupied agents' next goals in this circle. 
+    % 这张图中的圆包含3个点.
+    There are 3 occupied agents' goals in the circle range, namely $a_2$, $a_3$ and $a_4$.
+    }
+    \label{fig:adaptive_jam_task_circle_count_goal}
+\end{figure}
+
+
+% 伪代码2: count goal
+\begin{algorithm}
+    \caption{Count Goal in Task-Agent Circle}
+    % 给算法添加标签，方便引用
+    \label{alg:adaptive_jam_task_circle_count_goal} 
+    \textbf{Input:} agent $a_i$, task $\tau_j$ \\
+    \textbf{Output:} $congestion$
+    \begin{algorithmic}[1]
+
+    \STATE $congestion$ := number of agents' next goals in the task-agent circle. 
+
+    \end{algorithmic}
+\end{algorithm}
+
+\end{comment}
+
+% 4.3 vector intersect
+\subsection{Count Intersections between Agent-Task and Agent-Goal}\label{sec:adaptive_jam_curr_pickup_intersect_curr_goal}
+
+% 当前位置到first goal的向量: agent-task vector
+The agent-task vector represents the vector from the free agent's current location to the task first goal location, 
+% 当前位置到goal的向量: agent-goal vector
+while the agent-goal vector represents the vector from the occupied agent's current location to the next goal location. 
+% 直观：如果连线相交叉，则更有可能碰撞
+The key insight here is that a higher number of intersection points between an agent-task vector and multiple agent-goal vectors can lead to increased delays for the free agent as it navigates toward the task's first goal location.  
+% 提出CIATAG
+Thus, we introduce Count Intersections between Agent-Task and Agent-Goal (CIATAG) as a metric to quantify congestion. 
+CIATAG calculates the number of intersection points between a specified free agent-task vector and the agent-goal vectors of occupied agents.
+This approach is illustrated in Figure \ref{fig:adaptive_jam_curr_pickup_intersect_curr_goal} and detailed in Algorithm \ref{alg:adaptive_jam_curr_pickup_intersect_curr_goal}. 
+
+% 图4: count intersect
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.9\columnwidth]{adaptive_jam_curr_pickup_intersect_curr_goal.drawio.pdf}
+    \caption{This figure shows congestion computation when agent $a_1$ selects task $t_2$. 
+    % 图例说明
+    Circles with solid lines represent agents' current locations.
+    Circles with dashed lines represent agents' next goals.
+    Squares with solid lines represent tasks' first goal locations.
+    % 画向量
+    Draw agent-goal vectors from each agent's current location to its next goal. 
+    Draw a vector from $a_2$'s current location to $t_2$'s first goal location. 
+    % 用圆里其他agent的数量来计算拥堵程度
+    Count the number of intersection points between vector $<loc(a_2), loc(p_2)>$ with occupied agent-goal vectors. 
+    % 这张图中的圆包含3个点.
+    There are 3 intersection points between vector $<a2, p2>$ with occupied agent-goal vectors, namely $<loc(a_2),goal(a_2)>$, $<loc(a_3),goal(a_3)>$ and $<loc(a_4),goal(a_4)>$.
+    }
+    \label{fig:adaptive_jam_curr_pickup_intersect_curr_goal}
+\end{figure}
+
+
+% 伪代码5: count intersect
+\begin{algorithm}
+    \caption{Adaptive Delay Estimation Current First Goal Intersect Current Goal}
+    % 给算法添加标签，方便引用
+    \label{alg:adaptive_jam_curr_pickup_intersect_curr_goal} 
+    \textbf{Input:} agent $a_i$, task $\tau_j$ \\
+    \textbf{Output:} $congestion$
+    \begin{algorithmic}[1]
+
+    \STATE $congestion$ := number of intersection points between selected free agent-task vector and occupied agent-goal vectors            
+
+    \end{algorithmic}
+\end{algorithm}
+
+
+% 4.4 square count current
+\subsection{Count Agent in Task Square}
+\label{sec:adaptive_jam_task_pickup_region_count_current}
+
+
+% 回顾4.1 & 4.2
+In Algorithm \ref{alg:adaptive_jam_task_circle_count_current} 
+% and \ref{alg:adaptive_jam_task_circle_count_goal}, 
+we count number of agents 
+% or goals 
+in task-agent circle to estimate the delay of each free agent in completing each free task. 
+% 由于agent-task距离变动, 需要统计每个圆
+However, because the distance (representing the circle radius) between each free agent and each free task can vary, 
+this requires counting agents across $|A_0| \times |T_0|$ circles, 
+where $|A_0|$ is the number of free agents and $|T_0|$ is the number of free tasks. 
+% 导致缺点，时间不够
+This result in inefficiency when the number of free agents exceeds 1,000. 
+% 提出区域算法
+To address this challenge, we introduce Count Agent in Task Square (CATS), as detailed in Algorithm \ref{alg:adaptive_jam_task_pickup_region_count_current}. 
+
+
+ % Step 1: 切网格
+ Rather than dynamically calculating circles, CATS divides the map into fixed $k \times k$ squares regions, as shown in Figure \ref{fig:adaptive_jam_task_pickup_region_count_current}.
+% Step 2: count每个任务所在网格中agent的数量
+At each timestep, CATS determines the square in which each free task’s first goal belongs and counts the number of agents within that square (Lines 4-5) before iterating over each free agent. 
+% 由于range是固定的, 缩短了计算时间
+Because these square boundaries are static, the computed agent counts for a square apply to all free agents estimating congestion in that range. 
+This significantly reduces the computational overhead by avoiding repetitive calculations, thus improving efficiency, especially in scenarios with a large number of agents and tasks. 
+
+% 图3: count square region
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.9\columnwidth]{adaptive_jam_task_pickup_region_count_current_2x2.drawio.pdf}
+    \caption{This figure shows congestion computation when agent $a_1$ selects task $\tau_2$. 
+    % 图例说明
+    Circles with solid lines represent agents' current locations.
+    Squares with solid lines represent tasks' first goal locations.
+    % 划分区域
+    Squares with dashed lines represent ranges divided on the map.
+    % 用square里其他agent的数量来计算拥堵程度
+    Count the number of other agents in the square where task first goal located. 
+    % pickup所在方块包含3个点.
+    There are 3 other agents in the first goal square, namely $a_2$, $a_3$ and $a_5$.
+    }
+    \label{fig:adaptive_jam_task_pickup_region_count_current}
+\end{figure}
+
+
+% 伪代码3: count square current
+\begin{algorithm}
+    \caption{Count Agent in Task Square}
+    % 给算法添加标签，方便引用
+    \label{alg:adaptive_jam_task_pickup_region_count_current} 
+    \textbf{Input:} agent $a_i$, task $\tau_j$ \\
+    \textbf{Output:} $congestion$
+    \begin{algorithmic}[1]
+
+    \STATE $A_0 := A_0 \cup \{newFreeAgents\}$
+    \STATE $T_0 := T_0 \cup \{newFreeTasks\}$
+    \STATE $\gamma$ := (totalActualDuration - totalMinTaskDuration) / numTaskFinished
+    
+    % 计算每个区域内的agent数量
+    \STATE count the number of agent in each square
+    % 计算每个free task属于哪个区域
+    \STATE compute each free task first goal in which square
+    
+    % 遍历每个free agent
+    \FOR {$a_i \in A_0$}
+        % 检测是否超时
+        \IF {time runs out}
+            \STATE \textbf{break}
+        \ENDIF
+
+        \STATE minTaskDuration := IntMax
+        % 遍历每个free task
+        \FOR {$\tau_j \in T_0$}
+            % 计算square中agent数量
+            \STATE taskDist := $d(a_i, \tau_j) + d(\tau_j)$
+
+            % 由square中agent数量估算delay                
+            \STATE $\Delta$ = $\gamma$ numAgentInPickupSquare
+            \STATE taskDuration := taskDist + $\Delta$
+
+            \IF {$taskDuration < minTaskDuration$}
+                \STATE $\tau_{min} := \tau_j$
+                \STATE minTaskDuration := taskDuration
+            \ENDIF
+        \ENDFOR
+        
+        % 分配最小完成距离的任务
+        \STATE assign $\tau_{min}$ to $a_i$
+        \STATE $ A_0 := A_0 - \{a_i\} $
+        \STATE $ T_0 := T_0 - \{\tau_{min}\} $
+    \ENDFOR
+
+    \end{algorithmic}
+\end{algorithm}
+
+
+% 4.5 square density times distance
+\subsection{Task Square Density Times Agent-Task Distance}
+
+%% 回顾4.4
+The Task Square Density Times Agent-Task Distance (TSDTATD) method modifies the Count Agent in Task Square (CATS) approach by explicitly considering the impact of static obstacles on congestion. 
+While CATS estimates the delay of free agents completing tasks by counting the number of agents in the square region where the task’s first goal point is located, 
+% 缺少对静态障碍物的考虑
+it overlooks static obstacles that can significantly influence congestion and delay. 
+% 提出method
+In TSDTATD, both the number of agents and static obstacles are taken into account, as illustrated, as illustrated in Figure \ref{fig:adaptive_jam_task_region_current_density_times_agent_pickup} and Algorithm \ref{alg:adaptive_jam_task_region_current_density_times_agent_pickup}. 
+
+
+% 图4: compute square density
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.9\columnwidth]{adaptive_jam_task_region_current_density_times_agent_pickup_2x2.drawio.pdf}
+    \caption{This figure shows congestion computation when agent $a_1$ selects task $t_2$. 
+    % 图例说明
+    Circles with solid lines represent agents' current locations.
+    White squares with solid lines represent tasks' first goal locations.
+    Black squares represent static obstacles in the map. 
+    % 划分区域
+    Squares with dashed lines represent ranges divided on the map.
+    % 用square里其他agent的数量来计算拥堵程度
+    Count the number of other agents in the square where task first goal located. 
+    % pickup所在方块包含3个点.
+    There are 3 other agents and 3 static obstacles in the first goal square.
+    }
+    \label{fig:adaptive_jam_task_region_current_density_times_agent_pickup}
+\end{figure}
+
+
+% 伪代码说明
+To compute congestion, 
+% 计算密度方法。
+the agent density (denoted as $\rho$) is calculated as the ratio of the number of agents in the square to the number of blank cells within the square, where blank cells refer to cells unoccupied by obstacles or agents (Line 1). 
+% 静态障碍物越多, 越容易堵塞。
+A greater number of static obstacles reduces the number of blank cells, thereby increasing agent density and contributing to delays in task completion. 
+% 为了量纲相等, density乘以dist
+To maintain dimensional consistency with delays, agent density is multiplied by the distance between the agent’s current location and the task’s pickup location (Line 2). 
+
+
+% 伪代码4: count square current
+\begin{algorithm}
+    \caption{Task Square Density Times Agent-Task Distance}
+    % 给算法添加标签，方便引用
+    \label{alg:adaptive_jam_task_region_current_density_times_agent_pickup} 
+    \textbf{Input:} agent $a_i$, task $\tau_j$ \\
+    \textbf{Output:} $congestion$
+    \begin{algorithmic}[1]
+
+    % 由square中agent的密度估算delay      
+    \STATE $\rho$ = numAgentInPickupSquare / (numCellsInPickupSquare - numObstaclesInPickupSquare)          
+    \STATE $congestion$ = $ \cdot \rho \cdot d(loc(a_i), loc(p_j))$ 
+
+    \end{algorithmic}
+\end{algorithm}
+
+
+% 5 Experiments
+\section{Experiments}
+
+% Experimental Evaluation Paragraph 1
+
+% logic chain: benchmark => competitors
+
+% 总览精神 
+%% competitors
+To evaluate the effectiveness of our congestion-based approaches (CATAC, CIATAG, CATS, and TSDTATD), we compared them against three task assignment algorithms: the default priority-based Greedy algorithm, the CENTRAL algorithm \cite{ma2017lifelong}, and No Man’s Sky (NMS), a method developed by the team that secured first place in the task scheduler track. 
+% 超参数
+The partition square size used in CATS and TSDTATD is set to 12x12. 
+%% 为什么不比较其他的
+Due to computational constraints, algorithms mentioned in Related Work are excluded as they can not complete task allocation within the one-second limit. 
+%% path planning
+All the above task assignment algorithms share the default path planner \cite{chen2024traffic}. 
+% language \& tool-chain => hardware \& OS => parameter setting
+They are coded in in C++ and tested on a Ubuntu 22.04 server with an Intel Xeon Gold 6133 CPU@2.50GHz processor and 125GiB RAM. 
+All algorithms are executed 3 times on each instance. 
+% Experimental Evaluation Paragraph 2
+
+% logic chain: benchmark description
+
+%% benchmark
+To ensure consistency with the LoRR evaluation platform, the tests are conducted across 10 main round instances provided by the organizers: RANDOM-01 to RANDOM-05 (small-scale), CITY-01 and CITY-02 (medium-scale), and GAME, SORTATION, and WAREHOUSE (large-scale). 
+%% random
+Each instance's agent number and simulation timesteps are shown in Table \ref{tab:experimental_results}. 
+Maps used ranged from 32x32 obstacle-rich grids to complex simulated environments such as city sections, video game terrains, and synthetic fulfillment centers. 
+%RANDOM-01 to RANDOM-05 all use map random-32-32-20 (a 32x32 map with 20\% random obstacles). 
+%% city
+%CITY-01 and CITY-02 both use map Paris\_1\_256 (a 256x256 map representing part of the city of Paris). 
+%% game
+%GAME uses map brc202d (a 481 by 530 map from video game Dragon Age Origins). 
+%% sortation和warehouse地图标准benchmark里没有, 是主办方自己加的
+%% sortation
+%SORTATION uses a 500x140 map representing synthetic automated sortation center. 
+%% warehouse
+%WAREHOUSE uses a 500x140 map representing synthetic automated fulfillment center. 
+
+
+% Experimental Results
+Results in Table \ref{tab:experimental_results} highlight significant differences in algorithm performance across instance scales. 
+% 分析CENTRAL
+CENTRAL performed optimally on small-instance maps and CITY-01 but faltered when agent numbers exceeded 3,000 in CITY-02, exposing limitations in handling high-density environments. 
+% 分析NMS
+NMS exhibited consistent strength on small and medium-scale instances, achieving the best results in CITY-02, which showcased its adaptability. 
+
+% 总览介绍congestion-based approaches结果
+% 发现CATS在Random-02没有优于Greedy
+For large-scale instances, congestion-based algorithms demonstrated standout performance. 
+% 分析CATAC
+CCATAC consistently outperformed Greedy in small- and medium-scale settings but lagged behind CENTRAL and NMS. 
+% 分析CIATAG
+CIATAG achieved top results on the GAME map, benefiting from its ability to model vector intersection points, a distinctive feature of GAME's complex traffic dynamics. 
+% 分析CATS和TSDTATD
+CATS ranked highest on SORTATION and second on WAREHOUSE, while TSDTATD excelled in WAREHOUSE and performed competitively in SORTATION. 
+Both underscore their effectiveness in high-traffic synthetic environments. 
+%% 这说明在计算时间不足的情况下，基于规则的方法比基于搜索的方法更占优势; 也说明在道路拥堵的情况下，congestion-based方法能够对延迟进行更好的刻画。
+This is because in scenarios where large-scale agents or insufficient computational time poses challenges, rule-based methods have an advantage over search-based methods (CENTRAL and NMS). 
+It also indicates that in cases of heavy traffic, congestion-based methods can better reflect the agent-task delay, thereby assigning more appropriate tasks to the agents. 
+ 
+
+\begin{table*}[t]
+\centering
+%\resizebox{.95\columnwidth}{!}{
+\caption{The number of tasks completed by each approach during the simulation time on main round instances. 
+If an algorithm fails to complete a task within the given time limit, the corresponding column is marked as 'timeout'.}
+\label{tab:experimental_results}
+\begin{tabular}{lrrrrrrrrr}
+    \toprule % 顶部线
+     & Agents &SimTime & Greedy & CENTRAL & NMS & CATAC & CIATAG & CATS & TSDTATD \\ \midrule % 表头线
+    RANDOM-01 & 100 & 600 & 490 & \textbf{573} & 571 & 555 & 549 & 490 & 533 \\
+    RANDOM-02 & 200 & 600 & 780 & 925 & \textbf{935} & 887 & 871 & 771 & 853 \\
+    RANDOM-03 & 400 & 800 & 972 & 1202 & \textbf{1220} & 1118 & 1075 & 943 & 1103 \\
+    RANDOM-04 & 700 & 1000 & 745 & \textbf{888} & 875 & 767 & 765 & 754 & 772 \\
+    RANDOM-05 & 800 & 2000 & 1122 & 1320 & \textbf{1386} & 1183 & 1154 & 1052 & 1188 \\
+    CITY-01 & 1500 & 3000 & 6119 & 7197 & \textbf{7359} & 7008 & 7029 & 6130 & 6399 \\
+    CITY-02 & 3000 & 3000 & 11372 & 2249 & \textbf{14030} & 12870 & 10431 & 11563 & 12171 \\
+    GAME & 6500 & 5000 & 6195 & 2562 & 7045 & 8061 & \textbf{9003} & 6024 & 6670 \\
+    SORTATION & 10000 & 5000 & 84686 & timeout & 17276 & 4744 & 9509 & \textbf{93597} & 88016 \\
+    WAREHOUSE & 10000 & 5000 & 62539 & timeout & 44350 & 4720 & 9462 & 71760 & \textbf{73735} \\ \bottomrule % 底部线
+\end{tabular}
+\end{table*}
+
+% 5 Conclusion
+\section{Conclusion}
+In this work, we introduce an adaptive congestion-based algorithm to enhance task allocation performance in large-scale multi-agent systems. 
+We present four metrics to evaluate congestion, namely CATAC, CIATAG, CATS and TSDTATD. 
+By incorporating these metrics, the congestion-based methods can more accurately predict task completion times, especially in high-density environments, by reflecting real-time traffic conditions. 
+%This dynamic adjustment allows for more effective task assignment, reducing delays caused by congestion and improving overall system performance. 
+Our experimental results demonstrate that these methods outperform traditional algorithms in scenarios with heavy traffic, offering significant potential for practical applications in automated warehousing and sortation centers. 
+
+
+\appendix
+
+\bibliography{aaai25}
+
+\end{document}

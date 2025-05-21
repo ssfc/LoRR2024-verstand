@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="warehouse" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="--inputFile ../example_problems/warehouse.domain/warehouse_large_5000.json -o test.json -s 3000" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="lifelong" TARGET_NAME="lifelong" CONFIG_NAME="Release" RUN_TARGET_PROJECT_NAME="lifelong" RUN_TARGET_NAME="lifelong">
+    <method v="2">
+      <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+    </method>
+  </configuration>
+</component>
