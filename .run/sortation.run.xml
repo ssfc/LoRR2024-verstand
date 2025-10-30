@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="sortation" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="--inputFile ../example_problems/warehouse.domain/sortation_large_2000.json -o test.json -t 1000 -s 3000" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="lifelong" TARGET_NAME="lifelong" CONFIG_NAME="Release" RUN_TARGET_PROJECT_NAME="lifelong" RUN_TARGET_NAME="lifelong">
+  <configuration default="false" name="sortation" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="--inputFile ../example_problems/warehouse.domain/sortation_large_2000.json -o test.json -t 1000 -s 3000" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="lifelong" TARGET_NAME="lifelong" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="lifelong" RUN_TARGET_NAME="lifelong">
     <method v="2">
       <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
     </method>
